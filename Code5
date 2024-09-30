@@ -1,0 +1,76 @@
+class Buku:
+    def __init__(self, judul, penulis, tahunTerbit, jenis, harga):
+        self.judul = judul
+        self.penulis = penulis
+        self.tahunTerbit = tahunTerbit
+        self.jenis = jenis
+        self.harga = harga
+    
+    # Getter dan Setter
+    def get_judul(self):
+        return self.judul
+    
+    def set_judul(self, judul):
+        self.judul = judul
+    
+    def get_penulis(self):
+        return self.penulis
+    
+    def set_penulis(self, penulis):
+        self.penulis = penulis
+    
+    def get_tahunTerbit(self):
+        return self.tahunTerbit
+    
+    def set_tahunTerbit(self, tahunTerbit):
+        self.tahunTerbit = tahunTerbit
+    
+    def get_jenis(self):
+        return self.jenis
+    
+    def set_jenis(self, jenis):
+        self.jenis = jenis
+    
+    def get_harga(self):
+        return self.harga
+    
+    def set_harga(self, harga):
+        self.harga = harga
+
+    # Method untuk mencetak informasi buku
+    def printInformasi(self):
+        print(f"Judul: {self.judul}")
+        print(f"Penulis: {self.penulis}")
+        print(f"Tahun Terbit: {self.tahunTerbit}")
+
+    # Method untuk menghitung umur buku
+    def umurBuku(self):
+        tahun_sekarang = 2023
+        umur = tahun_sekarang - self.tahunTerbit
+        return umur
+
+    # Method untuk menghitung harga buku setelah diskon
+    def hargaBuku(self):
+        diskon_jenis = 0
+        if self.jenis.lower() == "fiksi":
+            diskon_jenis = 0.05  # Diskon 5% untuk buku fiksi
+        elif self.jenis.lower() == "nonfiksi":
+            diskon_jenis = 0.02  # Diskon 2% untuk buku nonfiksi
+
+        harga_setelah_diskon_jenis = self.harga * (1 - diskon_jenis)
+        
+        if self.umurBuku() > 50:
+            harga_setelah_diskon_umur = harga_setelah_diskon_jenis * 0.9  # Diskon tambahan 10% untuk buku yang berumur lebih dari 50 tahun
+        else:
+            harga_setelah_diskon_umur = harga_setelah_diskon_jenis
+        
+        print(f"Harga setelah diskon: Rp{harga_setelah_diskon_umur}")
+        return harga_setelah_diskon_umur
+
+
+# Test Case
+if __name__ == "__main__":
+    buku = Buku("Logika Matematika", "J Karel Tampubolon", 2000, "fiksi", 50000)
+    buku.printInformasi()
+    buku.hargaBuku()
+    print(f"Umur buku: {buku.umurBuku()} tahun")
